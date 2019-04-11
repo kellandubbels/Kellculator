@@ -1,0 +1,111 @@
+<html>
+
+<head>
+    <script>
+        function insert(num) {
+            document.form.stack0.value = document.form.stack0.value + num;
+        }
+
+        function evaluateStack0() {
+            var stack0 = document.form.stack0.value;
+            if (stack0) {
+                document.form.stack0.value = eval(stack0);
+            }
+        }
+
+        function push() {
+            document.form.stack3.value = document.form.stack2.value;
+            document.form.stack2.value = document.form.stack1.value;
+            document.form.stack1.value = document.form.stack0.value;
+            document.form.stack0.value = "";
+        }
+
+        function dropX() {
+            document.form.stack0.value = document.form.stack1.value;
+            document.form.stack1.value = document.form.stack2.value;
+            document.form.stack2.value = document.form.stack3.value;
+            document.form.stack3.value = "";
+        }
+
+        function duplicateX() {
+            document.form.stack3.value = document.form.stack2.value;
+            document.form.stack2.value = document.form.stack1.value;
+            document.form.stack1.value = document.form.stack0.value;
+            // document.form.stack0.value = document.form.stack0.value;
+        }
+
+        function swapXandY() {
+            var SwapVar
+            SwapVar = document.form.stack1.value;
+            document.form.stack1.value = document.form.stack0.value;
+            document.form.stack0.value = SwapVar;
+        }
+
+        function negateX(num) {
+            var stack0 = document.form.stack0.value;
+            if (stack0) {
+                document.form.stack0.value = stack0 * -1;
+            }
+        }
+
+    </script>
+    <style>
+        .button {
+            width: 60;
+            height: 60;
+            font-size: 25;
+            margin: 2;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <table>
+            <tr>
+                <td><input class="button" type="button" value="EVALX" onclick="evaluateStack0()"></td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="7" onclick="insert(7)"></td>
+                <td><input class="button" type="button" value="8" onclick="insert(8)"></td>
+                <td><input class="button" type="button" value="9" onclick="insert(9)"></td>
+                <td><input class="button" type="button" value="/" onclick="insert('/')"></td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="4" onclick="insert(4)"></td>
+                <td><input class="button" type="button" value="5" onclick="insert(5)"></td>
+                <td><input class="button" type="button" value="6" onclick="insert(6)"></td>
+                <td><input class="button" type="button" value="*" onclick="insert('*')"></td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="1" onclick="insert(1)"></td>
+                <td><input class="button" type="button" value="2" onclick="insert(2)"></td>
+                <td><input class="button" type="button" value="3" onclick="insert(3)"></td>
+                <td><input class="button" type="button" value="-" onclick="insert('-')"></td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="0" onclick="insert('0')"></td>
+                <td><input class="button" type="button" value="." onclick="insert('.')"></td>
+                <td><input class="button" type="button" value="+/-" onclick="negateX()"></td>
+                <td><input class="button" type="button" value="+" onclick="insert('+')"></td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="PUSH" onclick="push()"></td>
+                <td><input class="button" type="button" value="DROPX" onclick="dropX()"></td>
+                <td><input class="button" type="button" value="SWAP" onclick="swapXandY()"></td>
+                <td><input class="button" type="button" value="DUPX" onclick="duplicateX()"></td>
+            </tr>
+        </table>
+
+        <form name="form">
+            <div>X: <input class="textview" name="stack0"></div>
+            <div>Y: <input class="textview" name="stack1"></div>
+            <div>Z: <input class="textview" name="stack2"></div>
+            <div>T: <input class="textview" name="stack3"></div>
+        </form>
+
+    </div>
+</body>
+
+</html>
